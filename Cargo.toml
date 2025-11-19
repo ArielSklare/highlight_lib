@@ -1,6 +1,28 @@
 [package]
-name = "highlight_lib"
+name = "highlight-lib"
 version = "0.1.0"
 edition = "2024"
+description = "Cross-platform highlighted text utilities"
+license = "MIT"
+repository = "https://github.com/ArielSklare/highlight_lib"
+readme = "README.md"
+categories = ["development-tools"]
+keywords = ["highlight", "utilities"]
+authors = ["Ariel Sklare"]
+documentation = "https://github.com/ArielSklare/highlight_lib/blob/main/README.md"
 
 [dependencies]
+serde = { version = "1", features = ["derive"] }
+unicode-bidi = "0.3"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+quick-xml = {version = "0.38.3", features = ["serialize"] }
+xkbcommon = "0.9.0"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62.2", features = [
+    "Win32_System_Com", 
+    "Win32_UI_Accessibility", 
+    "Win32_UI_Input_KeyboardAndMouse", 
+    "Win32_Globalization"
+    ] }
